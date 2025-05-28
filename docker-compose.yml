@@ -1,0 +1,28 @@
+# docker-compose.yml for CryptPad Development
+version: '3.8'
+
+services:
+  cryptpad-dev:
+    build: .
+    ports:
+      - "2001:3000"
+    volumes:
+      # Persist data
+      - cryptpad_data:/cryptpad/blob
+      - cryptpad_block:/cryptpad/block
+      - cryptpad_datastore:/cryptpad/datastore
+      - cryptpad_metadata:/cryptpad/data
+      # Optional: mount config for easy editing
+      - ./config.js:/cryptpad/config/config.js:ro
+      # Optional: mount customize folder
+      - ./customize:/cryptpad/customize
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    container_name: cryptpad-dev
+
+volumes:
+  cryptpad_data:
+  cryptpad_block:
+  cryptpad_datastore:
+  cryptpad_metadata:
