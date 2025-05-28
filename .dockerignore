@@ -1,0 +1,14 @@
+node_modules
+.git
+.gitignore
+README.md
+docs/
+.github/
+*.md
+.env*
+
+# Local data directories
+blob/
+block/
+data/
+datastore/
